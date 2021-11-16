@@ -1665,12 +1665,14 @@
  * Override if the automatically selected points are inadequate.
  */
 #if EITHER(AUTO_BED_LEVELING_3POINT, AUTO_BED_LEVELING_UBL)
-  //#define PROBE_PT_1_X 15
-  //#define PROBE_PT_1_Y 180
-  //#define PROBE_PT_2_X 15
-  //#define PROBE_PT_2_Y 20
-  //#define PROBE_PT_3_X 170
-  //#define PROBE_PT_3_Y 20
+  #define X_GRID_SPACING (X_BED_SIZE - 2 * MESH_INSET) / (GRID_MAX_POINTS_X - 1)
+  #define Y_GRID_SPACING (Y_BED_SIZE - 2 * MESH_INSET) / (GRID_MAX_POINTS_Y - 1)
+  #define PROBE_PT_1_X MESH_INSET + X_GRID_SPACING
+  #define PROBE_PT_1_Y MESH_INSET + Y_GRID_SPACING
+  #define PROBE_PT_2_X X_BED_SIZE - (MESH_INSET + X_GRID_SPACING)
+  #define PROBE_PT_2_Y MESH_INSET + Y_GRID_SPACING
+  #define PROBE_PT_3_X X_BED_SIZE / 2
+  #define PROBE_PT_3_Y Y_BED_SIZE - (MESH_INSET + Y_GRID_SPACING)
 #endif
 
 /**
